@@ -1,0 +1,43 @@
+<div class="container ">
+  <div class="row col-12">
+    <div class="card promoting-card mt-3">
+      <div class="card-body d-flex flex-row">
+        <img src="https://lh3.googleusercontent.com/a-/AOh14Gg5SL_KUHqurzMV2fzJrib1Auq2jtF8kpeMuZZuDA4=s96-c-rg-br100"
+          class="rounded-circle mr-3" height="50px" width="50px" alt="avatar">
+        <div>
+          <h4 class="card-title font-weight-bold mb-2">Aplicación de Héroes</h4>
+          <p class="card-text"><i class="far fa-clock pr-2"></i>Byron Loarte</p>
+        </div>
+      </div>
+    </div>
+    <div class="alert alert-secondary mt-2" role="alert">
+      Principalmente es una aplicación de Héroes utilizando servicios
+      <br>
+      <a href="https://angular.io" target="_blank">Documentación Oficial</a>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="row justify-content-center">
+  <!-- Para listar los personajes -->
+  <div class="col-5">
+
+    <app-personajes></app-personajes>
+    <!-- <app-personajes [personajes]="personajes"></app-personajes> -->
+
+  </div>
+
+
+  <!-- Para crear los personajes -->
+  <div class="col-4">
+
+    <app-agregar> </app-agregar>
+    <!-- <app-agregar [campos]="campos" (onNuevoPersonaje)="agregarNuevoPersoanje($event)"> </app-agregar> -->
+
+  </div>
+
+
+
+</div>
