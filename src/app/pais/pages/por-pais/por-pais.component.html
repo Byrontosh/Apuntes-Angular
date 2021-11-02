@@ -1,0 +1,36 @@
+<h2>Buscar por país</h2>
+<hr>
+
+<div class="row">
+  <div class="col">
+
+    <!-- Componente del input -->
+  <app-pais-input (onNuevoPais)="buscar($event)" (onNuevoPaisDebounce)="buscadorDebouce($event)" [placeholder]="placeholder"></app-pais-input>
+
+  </div>
+</div>
+
+<hr>
+<!-- Mensajes de Error -->
+
+<div class="alert alert-danger" *ngIf="existeError">
+  No se encuentra nada con el termino de busqueda {{termino}}
+</div>
+
+<div class="alert alert-dark" *ngIf="existeErrorVacios">
+  Debe ingresar un valor
+</div>
+
+
+<div class="row">
+  <div class="col">
+
+    <!-- Componente de la tabla -->
+    <app-pais-tabla [paises]="paises"></app-pais-tabla>
+
+
+  </div>
+</div>
+
+
+
