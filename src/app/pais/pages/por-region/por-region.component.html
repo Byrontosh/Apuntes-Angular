@@ -1,2 +1,35 @@
-<h2>Buscar por región</h2>
+<div class="animate__animated animate__slideInRight">
+<h2>Buscar por región <small>{{regionActiva | titlecase }}</small></h2>
 <hr>
+
+
+<h5>Seleccione la región</h5>
+
+<div class="row">
+  <div class="col">
+    <button *ngFor="let r of regiones"
+     [class]="getEstiloButton(r)"
+     (click)=activarRegion(r)>{{r | titlecase}}</button>
+  </div>
+</div>
+
+
+<hr>
+<!-- Mensajes de Error -->
+
+<div class="alert alert-danger" *ngIf="existeError">
+  No se encuentra nada con el termino de busqueda {{regionActiva}}
+</div>
+
+
+
+<div class="row">
+  <div class="col">
+
+    <!-- Componente de la tabla -->
+    <app-pais-tabla [paises]="paises"></app-pais-tabla>
+
+
+  </div>
+</div>
+</div>

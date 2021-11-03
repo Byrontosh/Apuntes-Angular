@@ -11,41 +11,51 @@ export class PorPaisComponent implements OnInit {
   termino: string = '';
   existeError: boolean = false;
   existeErrorVacios: boolean = false;
-  paises:Pais[]=[]
+  paises: Pais[] = [];
+  paisesSugeridos: Pais[] = [];
   placeholder = 'Buscar por país';
+  ocultarSugerencias:boolean=true
 
-  constructor(private srvPais: PaisService) {
+  constructor(private srvPais: PaisService) {}
+
+  ngOnInit(): void {
 
   }
 
-  ngOnInit(): void {}
+  buscar(termino: string) {
+    this.termino = termino;
+    this.existeError = false;
 
-
-  buscar(termino:string) {
-    this.termino = termino
-    this.existeError=false
-    if (this.termino.trim().length === 0) {
-      this.existeErrorVacios=true
+    if (this.termino.trim().length === 0)
+    {
+      this.existeErrorVacios = true;
       return;
     }
     this.srvPais.getpais(this.termino).subscribe(
       (res) => {
         this.paises = res;
-        this.existeErrorVacios=false
+        this.existeErrorVacios = false;
+        this.ocultarSugerencias= false
       },
       (err) => {
-
         this.existeError = true;
-        this.existeErrorVacios=false
-
+        this.existeErrorVacios = false;
       }
     );
   }
 
-
-  buscadorDebouce(termino:string)
+  buscadorDebouce(termino: string)
   {
-    this.existeError= false
-    console.log(termino);
+    this.existeError = false;
+
+    this.srvPais.getpais(termino).subscribe(
+      (data) => {
+        this.ocultarSugerencias= true
+        this.paisesSugeridos = data.splice(0, 5);
+      },
+      (error) => {
+        this.paisesSugeridos = [];
+      }
+    );
   }
 }

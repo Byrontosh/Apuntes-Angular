@@ -1,4 +1,6 @@
-<h2>Buscar por país</h2>
+
+<div class="animate__animated animate__slideInRight">
+<h2>Buscar por capital</h2>
 <hr>
 
 <div class="row">
@@ -6,6 +8,13 @@
 
     <!-- Componente del input -->
   <app-pais-input (onNuevoPais)="buscar($event)" (onNuevoPaisDebounce)="buscadorDebouce($event)" [placeholder]="placeholder"></app-pais-input>
+
+  <ul class="list-group" *ngIf="ocultarSugerencias">
+    <li *ngFor="let ps of paisesSugeridos"
+    class="list-group-item list-group-item-action">
+    <a [routerLink]="['/pais',ps.cca2]" class="nav-link">{{ps.name.common}}</a>
+    </li>
+  </ul>
 
   </div>
 </div>
@@ -34,3 +43,4 @@
 
 
 
+</div>

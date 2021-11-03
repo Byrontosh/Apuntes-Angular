@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DetallePais } from '../interfaces/detallepais.interface';
@@ -14,6 +14,15 @@ export class PaisService {
   private capitalUrl:string = "https://restcountries.com/v3/capital/"
 
   private codigoUrl:string = "https://restcountries.com/v2/alpha/"
+
+  private codigoRegion:string = "https://restcountries.com/v3/region/"
+
+  getParams()
+  {
+    return new HttpParams()
+    .set('fields','name,capital,population,cca2,flags')
+  }
+
 
 
   constructor(private http: HttpClient) {}
@@ -31,5 +40,10 @@ export class PaisService {
   {
 
     return this.http.get<DetallePais>(`${this.codigoUrl}/${id}`)
+  }
+
+  getRegion(codigo:string):Observable<Pais[]>
+  {
+    return this.http.get<Pais[]>(`${this.codigoRegion}/${codigo}`, {params:this.getParams()})
   }
 }

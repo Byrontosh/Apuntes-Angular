@@ -36,6 +36,7 @@ export class PaisInputComponent implements OnInit {
   buscar()
   {
     this.onNuevoPais.emit(this.termino)
+    this.termino=''
   }
 
   tecla()
